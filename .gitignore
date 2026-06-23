@@ -1,0 +1,66 @@
+# Terraform
+**/.terraform/*
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+*.tfplan
+tfplan
+*.plan
+crash.log
+crash.*.log
+
+# Sensitive variable files
+*.tfvars
+*.tfvars.json
+*.tfvars.backup
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Secrets & keys
+*.pem
+*.key
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+*.tmp
+# CLI config
+.terraformrc
+terraform.rc
+
+
+
+# Terraform working directory
+.terraform/
+ 
+# Terraform state files
+*.tfstate
+*.tfstate.*
+ 
+# Terraform plan files
+*.tfplan
+*.plan
+ 
+# Crash logs
+crash.log
+crash.*.log
+ 
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+ 
+# CLI config
+.terraformrc
+terraform.rc
