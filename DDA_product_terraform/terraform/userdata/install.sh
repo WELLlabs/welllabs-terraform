@@ -68,9 +68,14 @@ cat > /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json << 'CW_C
             "log_stream_name": "{instance_id}"
           },
           {
-            "file_path": "/opt/welllabs/logs/backend.log",
+            "file_path": "/opt/welllabs/logs/backend-access.log",
             "log_group_name": "/${project_name}-${environment}/backend",
-            "log_stream_name": "{instance_id}"
+            "log_stream_name": "{instance_id}-access"
+          },
+          {
+            "file_path": "/opt/welllabs/logs/backend-error.log",
+            "log_group_name": "/${project_name}-${environment}/backend",
+            "log_stream_name": "{instance_id}-error"
           }
         ]
       }
