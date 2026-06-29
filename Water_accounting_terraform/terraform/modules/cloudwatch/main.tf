@@ -24,13 +24,23 @@ resource "aws_cloudwatch_log_group" "codebuild" {
   tags = { Name = "${var.project_name}-${var.environment}-codebuild-logs" }
 }
 
-resource "aws_cloudwatch_log_group" "backend" {
-  name              = "/${var.project_name}-${var.environment}/backend"
+resource "aws_cloudwatch_log_group" "frontend_access" {
+  name              = "/${var.project_name}-${var.environment}/frontend-access"
   retention_in_days = 30
 
-  tags = { Name = "${var.project_name}-${var.environment}-backend" }
+  tags = { Name = "${var.project_name}-${var.environment}-frontend-access" }
 }
 
+resource "aws_cloudwatch_log_group" "frontend_error" {
+  name              = "/${var.project_name}-${var.environment}/frontend-error"
+  retention_in_days = 30
 
+  tags = { Name = "${var.project_name}-${var.environment}-frontend-error" }
+}
 
+resource "aws_cloudwatch_log_group" "deploy" {
+  name              = "/${var.project_name}-${var.environment}/deploy"
+  retention_in_days = 30
 
+  tags = { Name = "${var.project_name}-${var.environment}-deploy" }
+}
