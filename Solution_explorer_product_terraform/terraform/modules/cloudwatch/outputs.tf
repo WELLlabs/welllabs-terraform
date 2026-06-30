@@ -18,7 +18,11 @@ output "codebuild_log_group" {
 }
 
 output "backend_log_group" {
-  description = "CloudWatch log group for Django backend logs"
+  description = "CloudWatch log group for backend logs (streams: backend-access, backend-error)"
   value       = aws_cloudwatch_log_group.backend.name
 }
 
+output "frontend_log_group" {
+  description = "CloudWatch log group for frontend logs (streams: frontend-access, frontend-error)"
+  value       = aws_cloudwatch_log_group.frontend.name
+}

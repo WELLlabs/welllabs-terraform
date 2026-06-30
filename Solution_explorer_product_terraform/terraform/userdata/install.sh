@@ -91,31 +91,26 @@ cat > /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json << 'CW_C
             "log_stream_name": "{instance_id}"
           },
           {
-            "file_path": "/var/log/welllabs-deploy.log",
-            "log_group_name": "/${project_name}-${environment}/deploy",
-            "log_stream_name": "{instance_id}"
-          },
-          {
             "file_path": "/opt/welllabs/logs/backend.log",
             "log_group_name": "/${project_name}-${environment}/backend",
-            "log_stream_name": "{instance_id}"
+            "log_stream_name": "backend-access"
           },
           {
             "file_path": "/opt/welllabs/logs/backend-error.log",
-            "log_group_name": "/${project_name}-${environment}/backend-errors",
-            "log_stream_name": "{instance_id}"
+            "log_group_name": "/${project_name}-${environment}/backend-error",
+            "log_stream_name": "backend-error"
           },
           {
             "file_path": "/opt/welllabs/logs/frontend.log",
-            "log_group_name": "/welllabs/frontend",
-            "log_stream_name": "{instance_id}"
+            "log_group_name": "/${project_name}-${environment}/frontend",
+            "log_stream_name": "frontend-access"
           },
           {
-            "file_path": "/var/log/nginx/welllabs-error.log",
-            "log_group_name": "/welllabs/nginx",
-            "log_stream_name": "{instance_id}"
+            "file_path": "/opt/welllabs/logs/frontend-error.log",
+            "log_group_name": "/${project_name}-${environment}/frontend",
+            "log_stream_name": "frontend-error"
           },
-           {
+          {
             "file_path": "/var/log/syslog",
             "log_group_name": "/${project_name}-${environment}/syslog",
             "log_stream_name": "{instance_id}"

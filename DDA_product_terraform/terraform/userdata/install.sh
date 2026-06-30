@@ -35,8 +35,8 @@ systemctl enable nginx
 # 2. Configure and Start CloudWatch Agent
 echo "[2/9] Configuring and Enabling CloudWatch Agent..."
 
-mkdir -p /opt/aws/amazon-cloudwatch-agent/etc/
-cat > /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json << 'CW_CONFIG'
+mkdir -p /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.d/
+cat > /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.d/file_welllabs-dda.json << 'CW_CONFIG'
 {
   "agent": {
     "run_as_user": "root"
@@ -60,22 +60,32 @@ cat > /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json << 'CW_C
           {
             "file_path": "/var/log/syslog",
             "log_group_name": "/${project_name}-${environment}/syslog",
-            "log_stream_name": "{instance_id}"
+            "log_stream_name": "syslog"
           },
           {
             "file_path": "/var/log/userdata.log",
             "log_group_name": "/${project_name}-${environment}/userdata",
-            "log_stream_name": "{instance_id}"
+            "log_stream_name": "userdata"
           },
           {
             "file_path": "/opt/welllabs/logs/backend-access.log",
             "log_group_name": "/${project_name}-${environment}/backend",
-            "log_stream_name": "{instance_id}-access"
+            "log_stream_name": "backend-access"
           },
           {
             "file_path": "/opt/welllabs/logs/backend-error.log",
             "log_group_name": "/${project_name}-${environment}/backend",
-            "log_stream_name": "{instance_id}-error"
+            "log_stream_name": "backend-error"
+          },
+          {
+            "file_path": "/opt/welllabs/logs/frontend-out.log",
+            "log_group_name": "/${project_name}-${environment}/frontend",
+            "log_stream_name": "frontend-out"
+          },
+          {
+            "file_path": "/opt/welllabs/logs/frontend-error.log",
+            "log_group_name": "/${project_name}-${environment}/frontend",
+            "log_stream_name": "frontend-error"
           }
         ]
       }
@@ -87,7 +97,7 @@ CW_CONFIG
 /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl \
   -a fetch-config \
   -m ec2 \
-  -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json \
+  -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.d/file_welllabs-dda.json \
   -s
 
 # 3. Start CodeDeploy Agent
